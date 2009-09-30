@@ -1,0 +1,5 @@
+--langmap=PHP:.php.inc
+--php-types=c+f+d
+--regex-PHP=/^[ \t]*const[ \t]+([[:alnum:]_]+)/\1/d/
+
+--regex-javascript=/^[ \t]*(['"]?)([A-Za-z0-9_.]+)\1[ \t]*[:=][ \t]*function[ \t]*\(/\2/I,inner/i

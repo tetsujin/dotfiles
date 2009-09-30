@@ -1,0 +1,18 @@
+[user]
+  name = Tetsujin
+  email = tetsujin85@gmail.com
+
+[alias]
+  ci = commit
+  co = checkout
+  di = diff
+  st = status
+  br = branch
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+[core]
+  excludesfile = /Users/tetsujin/.gitignore.global
