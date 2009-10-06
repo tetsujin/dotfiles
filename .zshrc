@@ -47,10 +47,10 @@ fi
 ### aliase
 case "$OSTYPE" in
     linux*)
-        alias ls='ls -aF --color=auto'
+        alias ls='ls -aF --color=auto --show-control-chars'
         ;;
     darwin*|freebsd*)
-        alias ls='ls -aFG --show-control-chars'
+        alias ls='ls -aFG' 
         [ -x "`which gnuls`" ] && alias ls='gnuls -aF --color=auto --show-control-chars'
         [ -x "`which gls`"   ] && alias ls='gls -aF --color=auto --show-control-chars'
         ;;
