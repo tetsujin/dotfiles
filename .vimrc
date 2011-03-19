@@ -13,7 +13,7 @@ syntax enable
 colorscheme elflord
 
 " エンコーディング
-set encoding=japan
+set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set ambiwidth=double
@@ -43,11 +43,13 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}
 "set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 "highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=lightblue
 " Insertモード時にステータス行の色を変える
-augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=lightblue
-    autocmd InsertLeave * highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=lightgray
-augroup END
+if v:version > 700
+    augroup InsertHook
+        autocmd!
+        autocmd InsertEnter * highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=lightblue
+        autocmd InsertLeave * highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=lightgray
+    augroup END
+endif
 
 " 全角スペース Tab 末尾のスペースを可視化
 " http://blog.miraclelinux.com/ctd/2006/07/vim__32e1.html
@@ -69,8 +71,8 @@ filetype plugin indent on
 
 " http://www.kawaz.jp/pukiwiki/?vim#cb691f26
 if &encoding !=# 'utf-8'
-  set encoding=japan
-  set fileencoding=japan
+  set encoding=utf-8
+  set fileencoding=utf-8
 endif
 if has('iconv')
   let s:enc_euc = 'euc-jp'

@@ -70,7 +70,8 @@ else
     PAGER=more
 fi
 export PAGER
-export LESS='-X -i -P ?f%f:(stdin).  ?lb%lb?L/%L..  [?eEOF:?pb%pb\%..]'
+#export LESS='-X -i -P ?f%f:(stdin).  ?lb%lb?L/%L..  [?eEOF:?pb%pb\%..]'
+export LESS='--shift 1'
 
 ### rsync
 export RSYNC_RSH=ssh

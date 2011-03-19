@@ -65,7 +65,7 @@ alias grep='grep --color=auto'
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias grepc='grep --color=always'
-alias less='less -FR'
+alias less='less -R'
 #[ -x "`which tscreen`" ] && alias screen='tscreen'
 
 ### global aliase
