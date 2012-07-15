@@ -27,8 +27,9 @@ hardstatus alwayslastline '%{=s gk}[ %H %{g}][%= %{wk}%?%-Lw%?%{=b kr}(%{=b w}%n
 #hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
 
 ### term
-#term xterm-256color
-#termcapinfo xterm-256color "ks=\E[?1l\E:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F"
+term xterm-256color
+termcapinfo xterm-256color "ks=\E[?1l\E:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F"
+termcapinfo xterm* ti@:te@
 #attrcolor b ".I"
 #defbce "on"
 
@@ -48,10 +49,14 @@ bindkey "^[[5A" stuff "\015exit\012"  # up
 bindkey "^[[5B" screen                # down
 bindkey "^[[5C" next                  # right
 bindkey "^[[5D" prev                  # left
+bindkey "^[[1;5A" stuff "\015exit\012"  # up
+bindkey "^[[1;5B" screen                # down
+bindkey "^[[1;5C" next                  # right
+bindkey "^[[1;5D" prev                  # left
 
 ### emacs like
 markkeys h=^B:l=^F:$=^E:^U=^T:^D=^V
-#bind 3 split -v  # tscreen
+bind 3 split -v  # tscreen
 bind 2 split
 bind 1 only
 bind 0 remove

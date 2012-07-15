@@ -66,6 +66,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias grepc='grep --color=always'
 alias less='less -R'
+alias coffee='$HOME/local/apps/node_modules/coffee-script/bin/coffee'
 #[ -x "`which tscreen`" ] && alias screen='tscreen'
 
 ### global aliase
@@ -78,6 +79,8 @@ alias -g T='| tail'
 alias -g W='| wc'
 alias -g A='| awk'
 alias -g S='| sed'
+alias -g P='| percol'
+alias -g PM='| percol --match-method migemo'
 
 ### options
 setopt append_history
@@ -184,6 +187,12 @@ bindkey '^n' history-beginning-search-forward
 # zle -N down-line-or-beginning-search
 # bindkey '^p' up-line-or-beginning-search
 # bindkey '^n' down-line-or-beginning-search
+
+autoload -Uz is-at-least
+if is-at-least 4.3.10; then
+    bindkey '^R' history-incremental-pattern-search-backward
+    bindkey '^S' history-incremental-pattern-search-forward
+fi
 
 # zed
 autoload zed
@@ -343,6 +352,21 @@ fi
 #
 # bindkey '\^' cdup
 # zle -N cdup
+
+function exists { which $1 &> /dev/null }
+
+if exists percol; then
+    function percol_select_history() {
+        local tac
+        exists gtac && tac=gtac || tac=tac
+        BUFFER=$($tac $HISTFILE | sed 's/^: [0-9]*:[0-9]*;//' | percol --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+    }
+
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+fi
 
 ## local configuration
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

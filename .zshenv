@@ -4,6 +4,8 @@ path=(
     $HOME/local/bin(N-/)
     /opt/local/bin(N-/)
     /opt/local/sbin(N-/)
+    /opt/local/*/bin(N-/)
+    /opt/local/*/sbin(N-/)
     /bin(N-/)
     /usr/local/bin(N-/)
     /usr/bin(N-/)
@@ -82,7 +84,11 @@ export CVS_EDITOR=$EDITOR
 
 ### svn
 export SVN_RSH=ssh
-export SVN_EDITOR=$EDITOR
+#export SVN_EDITOR=$EDITOR
+export SVN_EDITOR=`which vi`
+
+### git
+export GIT_EDITOR=`which vi`
 
 ### perl
 export PERL_BADLANG=0
