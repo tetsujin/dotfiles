@@ -54,7 +54,7 @@ umask 022
 export BLOCKSIZE=k
 
 ### editor
-if [ -x "`which vim`" ]; then
+if which vim &> /dev/null; then
     EDITOR=vim
 else
     EDITOR=vi
@@ -62,11 +62,11 @@ fi
 export EDITOR
 
 ### pager
-if [ -x "`which lv`" ]; then
+if which lv &> /dev/null; then
     PAGER=lv
-elif [ -x "`which jless`" ]; then
+elif which jless &> /dev/null; then
     PAGER=jless
-elif [ -x "`which less`" ]; then
+elif which less &> /dev/null; then
     PAGER=less
 else
     PAGER=more

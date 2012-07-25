@@ -28,8 +28,8 @@ fignore=(
 export LSCOLORS=gxfxcxdxbxegedabagacdx
 # GNU ls
 if [ -f "$HOME/.dir_colors" ]; then
-    [ -x "`which dircolors`" ] && eval `dircolors -b "$HOME/.dir_colors"`
-    [ -x "`which gdircolors`" ] && eval `gdircolors -b "$HOME/.dir_colors"`
+    which dircolors &> /dev/null  && eval `dircolors -b "$HOME/.dir_colors"`
+    which gdircolors &> /dev/null && eval `gdircolors -b "$HOME/.dir_colors"`
 fi
 
 ### for emacs M-x shell
@@ -51,8 +51,8 @@ case "$OSTYPE" in
         ;;
     darwin*|freebsd*)
         alias ls='ls -aFG' 
-        [ -x "`which gnuls`" ] && alias ls='gnuls -aF --color=auto --show-control-chars'
-        [ -x "`which gls`"   ] && alias ls='gls -aF --color=auto --show-control-chars'
+        which gnuls &> /dev/null && alias ls='gnuls -aF --color=auto --show-control-chars'
+        which gls &> /dev/null   && alias ls='gls -aF --color=auto --show-control-chars'
         ;;
 esac
 alias wget='noglob wget --no-check-certificate'
