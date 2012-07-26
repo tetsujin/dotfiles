@@ -159,7 +159,8 @@ setopt clobber
 #setopt no_unset
 
 ### autoload & bindkey
-stty erase '^H'
+#stty erase '^H'
+stty erase "^?"
 stty stop undef
 
 # emacsベース
@@ -320,7 +321,7 @@ fi
 #echo "\033P\033]0;${USER}@${HOST}\007\033\\"
 
 ### screen用設定
-if [ -n "$WINDOW" ]; then
+oif [ -n "$WINDOW" -o -n "$TMUX" ]; then
     preexec() {
         emulate -L zsh
         local -a cmd; cmd=(${(z)2})
@@ -336,6 +337,12 @@ if [ -n "$WINDOW" ]; then
                 ;;
         esac
     }
+fi
+
+### tmux用設定
+if [[ "$TMUX" != "" ]] then
+    alias pbcopy="ssh 127.0.0.1 pbcopy"
+    alias pbpaste="ssh 127.0.0.1 pbpaste"
 fi
 
 # function ssh_screen() {

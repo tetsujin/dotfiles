@@ -26,7 +26,9 @@ for f in \
     .inputrc \
     .lesskey \
     .my.cnf \
+    .percol.d \
     .screenrc \
+    .tmux.conf \
     .vimrc \
     .zshenv \
     .zshrc

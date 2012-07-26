@@ -63,11 +63,11 @@ export EDITOR
 
 ### pager
 if which lv &> /dev/null; then
-    PAGER=lv
+    PAGER='lv -c'
 elif which jless &> /dev/null; then
     PAGER=jless
 elif which less &> /dev/null; then
-    PAGER=less
+    PAGER='less -R'
 else
     PAGER=more
 fi
