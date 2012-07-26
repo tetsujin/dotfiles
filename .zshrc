@@ -321,7 +321,7 @@ fi
 #echo "\033P\033]0;${USER}@${HOST}\007\033\\"
 
 ### screen用設定
-oif [ -n "$WINDOW" -o -n "$TMUX" ]; then
+if [ -n "$WINDOW" -o -n "$TMUX" ]; then
     preexec() {
         emulate -L zsh
         local -a cmd; cmd=(${(z)2})
