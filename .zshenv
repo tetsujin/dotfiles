@@ -2,12 +2,15 @@
 typeset -U path
 path=(
     $HOME/local/bin(N-/)
+    $HOME/.phpenv/bin(N-/)
+    /usr/local/phpenv/bin(N-/)
     /opt/local/bin(N-/)
     /opt/local/sbin(N-/)
     /opt/local/*/bin(N-/)
     /opt/local/*/sbin(N-/)
     /bin(N-/)
     /usr/local/bin(N-/)
+    /usr/local/*/bin(N-/)
     /usr/bin(N-/)
     /usr/local/git/bin(N-/)
     /sbin(N-/)
@@ -92,6 +95,11 @@ export GIT_EDITOR=`which vi`
 
 ### perl
 export PERL_BADLANG=0
+
+### php
+if which phpenv &> /dev/null; then
+    eval "$(phpenv init -)"
+fi
 
 ### local configuration
 [ -f ~/.zshenv.local ] && source ~/.zshenv.local
