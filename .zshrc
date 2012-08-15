@@ -1,20 +1,4 @@
 ### environment
-manpath=(
-    /opt/*/man(N-/)
-    /usr/*/man(N-/)
-    /usr/local/*/man(N-/)
-)
-
-fpath=(
-    $HOME/.zsh/functions(N-/)
-    $fpath
-)
-
-fignore=(
-    CVS
-    .svn
-    .git
-)
 
 #export IGNOREEOF=                     # setopt ignore_eofで設定
 #export WORDCHARS="${WORDCHARS:s#/#}"  # select-word-styleで設定
@@ -221,7 +205,7 @@ autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
 # 色の定義読み込み
-autoload colors; colors
+autoload -U colors; colors
 
 # help表示
 autoload run-help
@@ -374,6 +358,38 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
+
+### mysql
+# mysql client user
+typeset -A mysql_prompt_style_client_user
+mysql_prompt_style_client_user=(
+    # 'root'     $fg_bold[red]
+    # '*'        $fg_bold[green]
+)
+# mysql client host
+typeset -A mysql_prompt_style_client_host
+mysql_prompt_style_client_host=(
+    '*.local.*'     "$fg_bold[green]"
+    '*.dev.*'       "$fg_bold[yellow]"
+    '*'             "$fg_bold[red]"
+)
+# mysql server user
+typeset -A mysql_prompt_style_server_user
+mysql_prompt_style_server_user=(
+    'root'          "$bg_bold[red]$fg_bold[yellow]"
+    '*'             "$fg_bold[blue]"
+)
+# mysql server host
+typeset -A mysql_prompt_style_server_host
+mysql_prompt_style_server_host=(
+    '*master*'      "$bg_bold[red]$fg_bold[yellow]"  # Master Server
+    '*slave*'       "$bg[yellow]$fg[black]" # Slvae Server
+    '*'             "$fg_bold[blue]"
+)
+# mysql prompt style (Should use single quoted string.)
+mysql_prompt='${style_client_host}${USER}@${HOST}${fg_bold[white]} -> '
+mysql_prompt=$mysql_prompt'${style_server_user}\u${reset_color}${fg_bold[white]}@${style_server_host}\h${reset_color}${fg_bold[white]}:${fg[magenta]}\d ${fg_bold[white]}\v\n'
+mysql_prompt=$mysql_prompt'${fg_bold[white]}${bg_level}mysql${reset_color}> '
 
 ## local configuration
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -2,6 +2,7 @@
 typeset -U path
 path=(
     $HOME/local/bin(N-/)
+    $HOME/.rbenv/bin(N-/)    
     $HOME/.phpenv/bin(N-/)
     /usr/local/phpenv/bin(N-/)
     /opt/local/bin(N-/)
@@ -18,6 +19,27 @@ path=(
     /usr/sbin(N-/)
     /usr/local/X11/bin(N-/)
     /usr/X11/bin(N-/)
+)
+
+typeset -U manpath
+manpath=(
+    /opt/*/man(N-/)
+    /usr/*/man(N-/)
+    /usr/local/*/man(N-/)
+)
+
+typeset -U fpath
+fpath=(
+    $HOME/.zsh.d/*(/N)
+    $fpath
+)
+autoload -U $(echo ~/.zsh.d/functions/*(:t))
+
+typeset -U fignore
+fignore=(
+    CVS
+    .svn
+    .git
 )
 
 ### language
@@ -99,6 +121,10 @@ export PERL_BADLANG=0
 ### php
 if which phpenv &> /dev/null; then
     eval "$(phpenv init -)"
+fi
+### ruby
+if which rbenv &> /dev/null; then
+    eval "$(rbenv init -)"
 fi
 
 ### local configuration
