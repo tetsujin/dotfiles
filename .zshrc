@@ -388,8 +388,8 @@ mysql_prompt_style_server_host=(
 )
 # mysql prompt style (Should use single quoted string.)
 mysql_prompt='${style_client_host}${USER}@${HOST}${fg_bold[white]} -> '
-mysql_prompt=$mysql_prompt'${style_server_user}\u${reset_color}${fg_bold[white]}@${style_server_host}\h${reset_color}${fg_bold[white]}:${fg[magenta]}\d ${fg_bold[white]}\v\n'
-mysql_prompt=$mysql_prompt'${fg_bold[white]}${bg_level}mysql${reset_color}> '
+mysql_prompt=$mysql_prompt'${style_server_user}\u${reset_color}${fg_bold[white]}@${style_server_host}\h${reset_color}${fg_bold[white]}:${fg[magenta]}\d ${fg_bold[white]}\v${reset_color}\n'
+mysql_prompt=$mysql_prompt'mysql> '
 
 ### php symfony
 # http://blog.bz2.jp/archives/2008/05/symfony.html
