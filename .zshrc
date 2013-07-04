@@ -356,7 +356,8 @@ if exists percol; then
         fi
         BUFFER=$(history -n 1 | \
             eval $tac | \
-            percol --match-method migemo --query "$LBUFFER")
+            percol --query "$LBUFFER")
+            #percol --match-method migemo --query "$LBUFFER")
         CURSOR=$#BUFFER
         zle clear-screen
     }
