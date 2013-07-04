@@ -2,9 +2,11 @@
 typeset -U path
 path=(
     $HOME/local/bin(N-/)
-    $HOME/.rbenv/bin(N-/)    
+    $HOME/.rbenv/bin(N-/)
     $HOME/.phpenv/bin(N-/)
+    $HOME/perl5/bin(N-/)
     /usr/local/phpenv/bin(N-/)
+    /usr/local/share/python(N-/)
     /opt/local/bin(N-/)
     /opt/local/sbin(N-/)
     /opt/local/*/bin(N-/)
@@ -41,6 +43,12 @@ fignore=(
     .svn
     .git
 )
+typeset -T PYTHONPATH pythonpath
+typeset -U pythonpath
+pythonpath=(
+    /usr/local/lib/python2.7/site-packages(N-/)
+)
+export PYTHONPATH
 
 ### language
 export LANG=en_US.UTF-8

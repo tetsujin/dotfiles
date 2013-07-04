@@ -347,16 +347,21 @@ fi
 function exists { which $1 &> /dev/null }
 
 if exists percol; then
-    function percol_select_history() {
+    function percol-select-history() {
         local tac
-        exists gtac && tac=gtac || tac=tac
-        BUFFER=$($tac $HISTFILE | sed 's/^: [0-9]*:[0-9]*;//' | percol --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
+        if which tac > /dev/null; then
+            tac="tac"
+        else
+            tac="tail -r"
+        fi
+        BUFFER=$(history -n 1 | \
+            eval $tac | \
+            percol --match-method migemo --query "$LBUFFER")
+        CURSOR=$#BUFFER
+        zle clear-screen
     }
-
-    zle -N percol_select_history
-    bindkey '^R' percol_select_history
+    zle -N percol-select-history
+    bindkey '^R' percol-select-history
 fi
 
 ### mysql
@@ -402,6 +407,9 @@ symfony(){(
     cd ..; symfony $*
   fi
 )}
+
+# perlbrew
+[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
 ## local configuration
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
