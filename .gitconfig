@@ -15,7 +15,7 @@
   branch = auto
   interactive = auto
 [core]
-	excludesfile = /Users/tetsujin/.gitignore.global
+	excludesfile = ~/.gitignore.global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

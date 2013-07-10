@@ -6,4 +6,7 @@
 semantic.cache
 *.swp
 *.elc
-
+.fuse_*
+.ap-project-files
+tags
+TAGS
