@@ -1,18 +1,23 @@
 ### path
 typeset -U path
 path=(
+    $HOME/bin(N-/)
     $HOME/local/bin(N-/)
     $HOME/.rbenv/bin(N-/)
     $HOME/.phpenv/bin(N-/)
-    $HOME/perl5/bin(N-/)
+    $HOME/.plenv/bin(N-/)
+    $HOME/.composer/vendor/bin(N-/)
+    $HOME/.packer(N-/)
+    $HOME/.nodebrew/current/bin(N-/)
     /usr/local/phpenv/bin(N-/)
-    /usr/local/share/python(N-/)
+    #/usr/local/share/python(N-/)
+    /usr/local/opt/texinfo/bin(N-/)
     /opt/local/bin(N-/)
     /opt/local/sbin(N-/)
     /opt/local/*/bin(N-/)
     /opt/local/*/sbin(N-/)
-    /bin(N-/)
     /usr/local/bin(N-/)
+    /bin(N-/)
     /usr/local/*/bin(N-/)
     /usr/bin(N-/)
     /usr/local/git/bin(N-/)
@@ -22,6 +27,13 @@ path=(
     /usr/local/X11/bin(N-/)
     /usr/X11/bin(N-/)
 )
+export GOROOT=/usr/local/opt/go/libexec
+typeset -T GOPATH gopath
+typeset -U gopath
+gopath=(
+  $HOME(N-/)
+)
+export GOPATH
 
 typeset -U manpath
 manpath=(
@@ -33,6 +45,7 @@ manpath=(
 typeset -U fpath
 fpath=(
     $HOME/.zsh.d/*(/N)
+    $HOME/.oh-my-zsh/custom/plugins/*(/N)
     $fpath
 )
 autoload -U $(echo ~/.zsh.d/functions/*(:t))
@@ -43,12 +56,12 @@ fignore=(
     .svn
     .git
 )
-typeset -T PYTHONPATH pythonpath
-typeset -U pythonpath
-pythonpath=(
-    /usr/local/lib/python2.7/site-packages(N-/)
-)
-export PYTHONPATH
+#typeset -T PYTHONPATH pythonpath
+#typeset -U pythonpath
+#pythonpath=(
+#    /usr/local/lib/python2.7/site-packages(N-/)
+#)
+#export PYTHONPATH
 
 ### language
 export LANG=en_US.UTF-8
@@ -124,16 +137,26 @@ export SVN_EDITOR=`which vi`
 export GIT_EDITOR=`which vi`
 
 ### perl
-export PERL_BADLANG=0
+#export PERL_BADLANG=0
+#if which plenv &> /dev/null; then
+#    eval "$(plenv init -)"
+#    PERL_VERSION_STRING="perl:"$(plenv version-name)
+#fi
+
+### ruby
+if which rbenv &> /dev/null; then
+    eval "$(rbenv init -)"
+    RUBY_VERSION_STRING="ruby:"$(rbenv version-name)
+fi
 
 ### php
 if which phpenv &> /dev/null; then
     eval "$(phpenv init -)"
+    PHP_VERSION_STRING="php:"$(phpenv version-name)
 fi
-### ruby
-if which rbenv &> /dev/null; then
-    eval "$(rbenv init -)"
-fi
+
+### ls
+export QUOTING_STYLE=literal
 
 ### local configuration
 [ -f ~/.zshenv.local ] && source ~/.zshenv.local

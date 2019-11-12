@@ -6,7 +6,9 @@
 semantic.cache
 *.swp
 *.elc
-.fuse_*
-.ap-project-files
-tags
+.dir-locals.el
 TAGS
+.idea
+.gitignore.local
+npm-debug.log
+*.iml
